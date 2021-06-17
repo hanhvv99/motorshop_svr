@@ -162,4 +162,43 @@ public class WarrantyDetailService {
                 || (h.isNullNum(warrantyDetail.getMotorId()) && h.isNullNum(warrantyDetail.getAccessoryId()))
                     || h.isNull(warrantyDetail.getContent());
     }   
+    
+    //MoreHanh
+    public List<Object[]>getFrameName(String nameFrame) {
+        try{                                    
+            if(h.isNull(nameFrame)) return null;
+            
+            return warraytyDetailRepo.getNameFrame(nameFrame);
+        }catch(NumberFormatException e) {            
+            throw e;
+        }
+    }
+    
+    public List<Object[]>getFrameNumber() {
+            return warraytyDetailRepo.getFrame();
+    }
+    
+    public List<Object[]>getDetailCustomter(String idInfo, String frameNumber) {
+        try{
+            if(h.isNull(idInfo) || h.isNull(frameNumber)) return null;
+            
+            int idmotorInfo = Integer.parseInt(idInfo);
+         
+            return warraytyDetailRepo.getDetailCustomter(idmotorInfo, frameNumber);
+        }catch(NumberFormatException e) {            
+            throw e;
+        }
+    }
+    
+    public List<Object[]>getFrameNumber(String idInfo, String phone) {
+        try{
+            if(h.isNull(idInfo) || h.isNull(phone)) return null;
+            
+            int idmotorInfo = Integer.parseInt(idInfo);
+         
+            return warraytyDetailRepo.getFrameNumber(idmotorInfo, phone);
+        }catch(NumberFormatException e) {            
+            throw e;
+        }
+    }
 }

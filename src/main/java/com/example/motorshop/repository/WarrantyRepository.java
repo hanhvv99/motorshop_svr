@@ -45,5 +45,5 @@ public interface WarrantyRepository extends JpaRepository<Warranty, Integer> {
                     nativeQuery = true)
     public List<Object[]> findClearByStaffName(@Param("staffName") String staffName); 
     
-    
+  
 }

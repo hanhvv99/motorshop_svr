@@ -72,4 +72,26 @@ public class WarrantyDetailController {
     public String delete(@RequestParam(name = "id") String id) {
         return warrantyDetailService.delete(id);
     }
+    
+    //MoreHanh
+    @GetMapping("/getFrameNumber/nameFrame")
+    public List<Object[]>getFrameName(@RequestParam("nameFrame") String nameFrame) {
+            return warrantyDetailService.getFrameName(nameFrame);
+    }
+    
+    @GetMapping("/getFrame")
+    public List<Object[]>getFrame() {
+            return warrantyDetailService.getFrameNumber();
+    }
+    
+    @GetMapping("/getDetailCustomter")
+    public List<Object[]>getDetailCustomter(@RequestParam("idmotorInfo") String idmotorInfo, @RequestParam("frameNumber") String frameNumber) {
+            return warrantyDetailService.getDetailCustomter(idmotorInfo,frameNumber);
+    }
+    
+    @GetMapping("/getFrameNumber/idmotorInfo")
+    public List<Object[]>getFrameNumber(@RequestParam("idmotorInfo") String idmotorInfo, @RequestParam("phone") String phone) {
+            return warrantyDetailService.getFrameNumber(idmotorInfo,phone);
+    }
+    
 }

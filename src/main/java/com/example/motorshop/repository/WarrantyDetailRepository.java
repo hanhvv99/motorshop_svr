@@ -79,4 +79,43 @@ public interface WarrantyDetailRepository extends JpaRepository<WarrantyDetail, 
                     " where product like %:productName% ",
                     nativeQuery = true)
     public List<Object[]> findClearByProductName(@Param("productName") String productName);
+    
+        
+    //MoreHanh
+    @Query(value = "select mi.name, md.content " +
+                    "from motor m, motor_info mi, motor_detail md " +
+                    "where m.motor_id = md.motor_id " +
+                    "and mi.motor_info_id = md.motor_info_id " +
+                    "and mi.name = :nameFrame",
+                    nativeQuery = true)
+    public List<Object[]> getNameFrame(@Param("nameFrame") String nameFrame);
+
+    
+    @Query(value = "select m.name as nameMotor, mi.name as nameMotorInfo, md.content as frameNumber " +
+                    "from motor m, motor_info mi, motor_detail md " +
+                    "where m.motor_id = md.motor_id " +
+                    "and mi.motor_info_id = md.motor_info_id ",
+                    nativeQuery = true)
+    public List<Object[]> getFrame();
+    
+    @Query(value = "select c.name,c.phone,c.address,c.identity_id from customer c "+
+                    "where c.customer_id = (select b.customer_id "+
+                            "from bill b, customer c,bill_detail bd, motor_detail md "+
+                            "where b.customer_id = c.customer_id "+
+                            "and b.bill_id = bd.bill_id "+
+                            "and md.motor_id = bd.motor_id "+
+                            "and md.motor_info_id = :idmotorInfo and md.content = :frameNumber) ",
+                    nativeQuery = true)
+    public List<Object[]> getDetailCustomter(@Param("idmotorInfo") Integer idmotorInfo, @Param("frameNumber") String frameNumber);
+    
+    @Query(value = "select md.content from motor_detail md "+
+                    "where md.motor_info_id = :idmotorInfo "+
+                    "and md.content = (select md2.content "+
+                                    "from bill b, customer c,bill_detail bd, motor_detail md2 "+
+                                    "where b.customer_id = c.customer_id "+
+                                    "and b.bill_id = bd.bill_id "+
+                                    "and md2.motor_id = bd.motor_id "+
+                                    "and c.phone = :phone) ",
+                    nativeQuery = true)
+    public List<Object[]> getFrameNumber(@Param("idmotorInfo") Integer idmotorInfo, @Param("phone") String phone);
 }

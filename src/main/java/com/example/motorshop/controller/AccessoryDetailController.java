@@ -54,7 +54,7 @@ public class AccessoryDetailController {
         return accessoryDetailService.deleteAccessoryDetail(accessoryId, motorId);
     }
     
-    @DeleteMapping("/id")
+    @DeleteMapping("id")
     public String deleteById(@RequestParam(name = "id") String id) {
         return accessoryDetailService.deleteById(id);
     }

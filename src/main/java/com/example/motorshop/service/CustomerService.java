@@ -178,8 +178,8 @@ public class CustomerService {
     
     public String authenticate(String usn, String pwd) {
         if(h.isNull(usn) || h.isNull(pwd) || !h.isNum(usn) || usn.length() > 15 || pwd.length() < 4) return null;
-        String customerId = customerRepo.existsByPhoneAndPassword(usn, pwd);
-        if(customerRepo.existsByPhoneAndPassword(usn, pwd) != null ) return customerId;
+        String customerId = customerRepo.existsByPhoneAndPassword(usn, pwd); System.out.println(customerId);
+        if(customerId != null ) return customerId;
         else return null;
     }
     
@@ -194,4 +194,5 @@ public class CustomerService {
             customer.setId(customer.getId().toUpperCase());
         customer.setName(h.formatName(customer.getName()));
     }
+    
 }

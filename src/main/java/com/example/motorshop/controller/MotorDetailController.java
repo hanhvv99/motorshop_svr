@@ -73,4 +73,11 @@ public class MotorDetailController {
     public String deleteById(@RequestParam(name = "id") String id) {
         return motorDetailService.deleteById(id);
     }
-}
+    
+    
+    //hạnh
+    @GetMapping("/getFrameNumber/idmotorInfo")
+    public List<Object[]>getFrameNumber(@RequestParam("idmotorInfo") String idmotorInfo, @RequestParam("phone") String phone) {
+            return motorDetailService.getFrameNumber(idmotorInfo,phone);
+    }
+}   

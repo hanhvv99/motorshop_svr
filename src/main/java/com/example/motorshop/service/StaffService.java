@@ -165,7 +165,7 @@ public class StaffService {
     
     public String authenticate(String usn, String pwd) {
         if(h.isNull(usn) || h.isNull(pwd) || !h.isNum(usn) || usn.length() > 15 || pwd.length() < 4) return null;
-        String staffId = staffRepo.existsByPhoneAndPassword(usn, pwd);
+        String staffId = staffRepo.existsByPhoneAndPassword(usn, pwd); System.out.println(staffId);
         if(staffId != null ) return staffId;
         else return null;
     }

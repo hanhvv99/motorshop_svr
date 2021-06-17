@@ -156,4 +156,19 @@ public class MotorDetailService {
     public boolean isNull(MotorDetail motorDetail) {        
         return h.isNullNum(motorDetail.getMotorId()) || h.isNullNum(motorDetail.getMotorInfoId()) || h.isNull(motorDetail.getContent());
     }    
+    
+    
+    
+    //hanh
+    public List<Object[]>getFrameNumber(String idInfo, String phone) {
+        try{
+            if(h.isNull(idInfo) || h.isNull(phone)) return null;
+            
+            int idmotorInfo = Integer.parseInt(idInfo);
+         
+            return motorDetailRepo.getFrameNumber(idmotorInfo, phone);
+        }catch(NumberFormatException e) {            
+            throw e;
+        }
+    }
 }

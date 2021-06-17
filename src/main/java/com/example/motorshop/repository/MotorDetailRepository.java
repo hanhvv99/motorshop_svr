@@ -69,4 +69,17 @@ public interface MotorDetailRepository extends JpaRepository<MotorDetail, Intege
     @Modifying
     @Query("delete from MotorDetail md where md.motorId = :motorId and md.motorInfoId = :motorInfoId")
     public void deleteByMotorIdAndMotorInfoId(@Param("motorId") Integer motorId, @Param("motorInfoId") Integer motorInfoId);
+
+    
+    //hạnh
+    @Query(value = "select md.content from motor_detail md "+
+                    "where md.motor_info_id = :idmotorInfo "+
+                    "and md.content = (select md2.content "+
+                                    "from bill b, customer c,bill_detail bd, motor_detail md2 "+
+                                    "where b.customer_id = c.customer_id "+
+                                    "and b.bill_id = bd.bill_id "+
+                                    "and md2.motor_id = bd.motor_id "+
+                                    "and c.phone = :phone) ",
+                    nativeQuery = true)
+    public List<Object[]> getFrameNumber(@Param("idmotorInfo") Integer idmotorInfo, @Param("phone") String phone);
 }

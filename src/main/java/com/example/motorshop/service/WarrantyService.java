@@ -127,5 +127,5 @@ public class WarrantyService {
     
     public void formatBill(Warranty warranty) {           
         warranty.setStaffId(warranty.getStaffId().toUpperCase());
-    }       
+    }   
 }
